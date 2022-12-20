@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Ibraim Soltonbaev Contact Book</title>
+  </head>
+  <body>
+    <div class="contacts">
+      <div id="wrapper" class="contacts_wrapper box">
+        <div class="contacts_column">
+          <div id="forms" class="contacts_row box">
+            <input
+              placeholder="Enter your name"
+              id="forms_name"
+              class="contacts_forms"
+              type="text"
+            />
+            <input
+              placeholder="Enter your last name"
+              id="forms_last-name"
+              class="contacts_forms"
+              type="text"
+            />
+            <input
+              placeholder="Enter your phone number"
+              id="forms_phone"
+              class="contacts_forms"
+              type="text"
+            />
+            <input
+              placeholder="Add photo URL"
+              id="forms_photo"
+              class="contacts_forms"
+              type="text"
+            />
+            <button id="forms_btn" class="contacts_forms">Add contact</button>
+          </div>
+          <div id="contact-details" class="contacts_row box">
+            <ul id="contacts_rendered-ul">
+              <li>
+                <span
+                  id="contacts_rendered-name"
+                  class="contacts_data-container"
+                ></span>
+                <span
+                  id="contacts_rendered-last-name"
+                  class="contacts_data-container"
+                ></span>
+              </li>
+              <li></li>
+              <li>
+                <span class="contacts_rendered-ul-span">Phone No: </span
+                ><span
+                  id="contacts_rendered-phone"
+                  class="contacts_data-container"
+                ></span>
+              </li>
+              <li id="contacts_rendered-photo">
+                <div
+                  id="contacts_rendered-photo-wrapper"
+                  class="contacts_data-container"
+                ></div>
+              </li>
+              <img id="save" alt="Save contact" src="./assets/save.svg" />
+              <img id="cancel" alt="Cancel" src="./assets/cancel.svg" />
+              <img id="delete" src="./assets/delete.png" />
+            </ul>
+          </div>
+        </div>
+        <ul id="names" class="contacts_column box"></ul>
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "contacts": [
+    {
+      "name": "Barack",
+      "lastName": "Obama",
+      "phone": "1(123)-444-45-67",
+      "photo": "https://www.biography.com/.image/t_share/MTE4MDAzNDEwNzg5ODI4MTEw/barack-obama-12782369-1-402.jpg",
+      "id": 1
+    },
+    {
+      "name": "George",
+      "lastName": "Bush",
+      "phone": "1(800)-555-55-55",
+      "photo": "https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU3ODc3NjU2MjE2NzQxNTk5/george-w-bush.jpg",
+      "id": 2
+    },
+    {
+      "name": "John F.",
+      "lastName": "Kennedy",
+      "phone": "1(718)-123-42-34",
+      "photo": "https://nationaltoday.com/wp-content/uploads/2022/05/73-John-Kennedy.jpg",
+      "id": 3
+    },
+    {
+      "name": "Bill",
+      "lastName": "Clinton",
+      "phone": "1(999)-999-99-99",
+      "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Bill_Clinton_1992.jpg/800px-Bill_Clinton_1992.jpg",
+      "id": 4
+    },
+    {
+      "name": "Donald",
+      "lastName": "Trump",
+      "phone": "1(987)-654-32-11",
+      "photo": "https://cdn.ballotpedia.org/images/3/3b/Donald_Trump_Square.png",
+      "id": 5
+    }
+  ]
+}
