@@ -36,7 +36,16 @@
               class="contacts_forms"
               type="text"
             />
-            <button id="forms_btn" class="contacts_forms">Add contact</button>
+            <button id="forms_btn-add" class="contacts_forms">
+              Add contact</button
+            ><span id="forms_edit-span" class="toggle">
+              <button id="forms_btn-update" class="contacts_forms">
+                Update
+              </button>
+              <div>
+                <img id="cancel" alt="Cancel" src="./assets/cancel.svg" />
+                <img id="delete" src="./assets/delete.png" /></div
+            ></span>
           </div>
           <div id="contact-details" class="contacts_row box">
             <ul id="contacts_rendered-ul">
@@ -64,9 +73,6 @@
                   class="contacts_data-container"
                 ></div>
               </li>
-              <img id="save" alt="Save contact" src="./assets/save.svg" />
-              <img id="cancel" alt="Cancel" src="./assets/cancel.svg" />
-              <img id="delete" src="./assets/delete.png" />
             </ul>
           </div>
         </div>

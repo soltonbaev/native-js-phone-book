@@ -140,3 +140,16 @@ body {
 #forms_btn:active {
   background-color: rgb(65, 60, 60);
 }
+
+.toggle {
+  display: none;
+}
+
+#forms_edit-span {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#forms_btn-update {
+  width: 50%;
+}
