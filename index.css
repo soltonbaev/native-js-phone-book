@@ -36,7 +36,7 @@ body {
 }
 
 .contacts_forms {
-  width: auto;
+  /* width: auto; */
   display: block;
   /* height: 20px; */
   margin: 10px;
@@ -113,19 +113,21 @@ body {
   font-weight: bold;
 }
 
-#save,
-#cancel,
+#forms_btn-update,
+#new,
 #delete {
-  margin: 10px 0px;
-  width: 20px;
-  opacity: 0.5;
+  /* margin: 10px 0px;
+  width: 20px; */
+  opacity: 0.7;
+  width: 100%;
 }
 
-#save:hover,
-#cancel:hover,
+#forms_btn-update:hover,
+#new:hover,
 #delete:hover {
   cursor: pointer;
   opacity: 1;
+  width: 100%;
 }
 
 #forms_btn {
@@ -135,14 +137,15 @@ body {
 #forms_btn:hover {
   background-color: rgb(123, 114, 114);
   cursor: pointer;
+  width: 100%;
 }
 
 #forms_btn:active {
   background-color: rgb(65, 60, 60);
 }
 
-.toggle {
-  display: none;
+.hidden {
+  display: none !important;
 }
 
 #forms_edit-span {
@@ -150,6 +153,14 @@ body {
   justify-content: space-around;
   align-items: center;
 }
-#forms_btn-update {
+/* #forms_btn-update {
   width: 50%;
+} */
+
+#contact-instructions {
+  height: 290px;
+}
+
+.selected {
+  background-color: rgb(39, 37, 37);
 }

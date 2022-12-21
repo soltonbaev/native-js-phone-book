@@ -38,16 +38,18 @@
             />
             <button id="forms_btn-add" class="contacts_forms">
               Add contact</button
-            ><span id="forms_edit-span" class="toggle">
+            ><span id="forms_edit-span" class="hidden">
               <button id="forms_btn-update" class="contacts_forms">
                 Update
               </button>
-              <div>
+              <button id="new" class="contacts_forms">New</button>
+              <button id="delete" class="contacts_forms">Delete</button>
+              <!-- <div>
                 <img id="cancel" alt="Cancel" src="./assets/cancel.svg" />
-                <img id="delete" src="./assets/delete.png" /></div
-            ></span>
+                <img id="delete" src="./assets/delete.png" /></div -->
+            </span>
           </div>
-          <div id="contact-details" class="contacts_row box">
+          <div id="contact-details" class="contacts_row hidden">
             <ul id="contacts_rendered-ul">
               <li>
                 <span
@@ -74,6 +76,10 @@
                 ></div>
               </li>
             </ul>
+          </div>
+          <div id="contact-instructions" class="contacts_row">
+            <h3>Click to add new contact</h3>
+            <span>or select existing contact from the list</span>
           </div>
         </div>
         <ul id="names" class="contacts_column box"></ul>
