@@ -46,8 +46,8 @@ function grabUiElements() {
 
 async function launchListeners(ui, id, type) {
   // add new contact
-  if (id && type === "new") {
-    ui.new.addEventListener("click", () => {
+  if (ui && id && type === "new") {
+    ui.new.addEventListener("click", function newContact() {
       ui.editSpan.classList.add("hidden");
       ui.add.classList.remove("hidden");
       ui.details.classList.add("hidden");
@@ -55,6 +55,7 @@ async function launchListeners(ui, id, type) {
       let currentLi = document.getElementById(id);
       currentLi.classList.remove("selected");
       clearInputs(ui);
+      ui.new.removeEventListener("click", newContact);
     });
   } else if (id && type === "update") {
     let newUpdateBtn = document.createElement("button");
@@ -119,7 +120,7 @@ async function renderContact(ui, id, contact) {
     let liCol = ui.list.querySelectorAll("li");
     let currentLi = document.getElementById(id);
     currentLi.classList.add("selected");
-    let siblings = liCol.forEach((li) => {
+    liCol.forEach((li) => {
       if (li !== currentLi) {
         li.classList.remove("selected");
       }
