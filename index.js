@@ -1,3 +1,5 @@
+const API = "https://api.jsonbin.io/v3/b/63a5834501a72b59f2378af6";
+
 async function launchContactBook() {
   let ui = grabUiElements();
   await renderNames(ui);
@@ -94,6 +96,7 @@ async function launchListeners(ui, id, type) {
 async function renderNames(ui) {
   ui.contactList.innerText = ""; // clear contact list
   let contacts = await getJSON();
+  console.log(contacts);
   contacts.forEach((contact) => {
     let li = document.createElement("li");
     ui.contactList.append(li);
@@ -159,12 +162,12 @@ async function editContact(ui, id, contact) {
 }
 
 async function setJSON(contact, id) {
-  let endpoint = "http://localhost:8000/contacts/";
+  let endpoint = API;
   if (contact === "delete" && id) {
     const options = {
       method: "DELETE",
     };
-    await fetch(`${endpoint}${id}`, options);
+    await fetch(`${endpoint.record}${id}`, options);
   } else if (id === undefined) {
     [name, lastName, phone, photo] = contact;
     const contactObj = {
@@ -201,9 +204,10 @@ async function setJSON(contact, id) {
 }
 
 async function getJSON() {
-  let contactsResponse = await fetch("http://localhost:8000/contacts");
+  let contactsResponse = await fetch(API);
   result = await contactsResponse.json();
-  return result;
+  let resArr = result.record;
+  return resArr;
 }
 
 launchContactBook();
