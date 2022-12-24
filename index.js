@@ -47,15 +47,21 @@ forms.addEventListener("click", (e) => {
   } else if (e.target.id === "delete") {
     console.log(selected);
     setJSON("delete", selected.id);
-    editSpan.classList.add("hidden");
-    addBtn.classList.remove("hidden");
-    contactDetails.classList.add("hidden");
-    contactInstructions.classList.remove("hidden");
-    selected.classList.remove("selected");
+    resetForms();
     clearInputs();
+  } else if (e.target.id === "new") {
+    clearInputs();
+    resetForms();
   }
 });
 
+function resetForms() {
+  editSpan.classList.add("hidden");
+  addBtn.classList.remove("hidden");
+  contactDetails.classList.add("hidden");
+  contactInstructions.classList.remove("hidden");
+  selected.classList.remove("selected");
+}
 //===================LAUNCH APP========================
 
 async function renderNames() {
