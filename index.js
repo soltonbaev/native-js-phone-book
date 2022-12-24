@@ -17,69 +17,58 @@ let delBtn = document.getElementById("delete");
 let newContact = document.getElementById("new");
 let contactDetails = document.getElementById("contact-details");
 let contactInstructions = document.getElementById("contact-instructions");
+let forms = document.getElementById("forms");
 let list = document.getElementById("names");
-
-//===================LAUNCH APP========================
-async function launchContactBook() {
-  await renderNames();
-  await launchListeners();
-}
+let info = document.getElementById("info");
+let selected;
 //==================LAUNCH EVENT LISTENERS=====================
-async function launchListeners(id, type) {
-  // add new contact
-  if (id && type === "new") {
-    newContact.addEventListener("click", function clearContact() {
-      editSpan.classList.add("hidden");
-      addBtn.classList.remove("hidden");
-      contactDetails.classList.add("hidden");
-      contactInstructions.classList.remove("hidden");
-      let currentLi = document.getElementById(id);
-      currentLi.classList.remove("selected");
-      clearInputs();
-      newContact.removeEventListener("click", clearContact);
-    });
-  } else if (id && type === "update") {
-    let newUpdateBtn = document.createElement("button");
-    newUpdateBtn.innerText = "Update";
-    newUpdateBtn.setAttribute("id", "forms_btn-update");
-    newUpdateBtn.classList.add("contacts_forms");
-    editSpan.prepend(newUpdateBtn);
-    newUpdateBtn.addEventListener("click", async function update() {
-      await updateContact(id);
-      await renderNames();
-    });
-  } else if (id && type == "delete") {
-    delBtn.addEventListener("click", async function del() {
-      await setJSON("delete", id);
-      delBtn.removeEventListener("click", del);
-      await renderNames();
-      await renderContact();
-    });
-  } else {
-    addBtn.addEventListener("click", function addNew() {
+
+forms.addEventListener("click", (e) => {
+  if (e.target.id == "forms_btn-add") {
+    if (inputName.value === "") {
+      info.innerText = "Please, enter the first name at least";
+      info.style.color = "red";
+      return;
+    } else {
       if (inputPhoto.value == "") {
         inputPhoto.value = "./assets/placeholder.jpg";
       }
-      setJSON(
-        [inputName.value, inputLName.value, inputPhone.value, inputPhoto.value],
-        id
-      );
-
-      clearInputs();
-    });
+      setJSON([
+        inputName.value,
+        inputLName.value,
+        inputPhone.value,
+        inputPhoto.value,
+      ]);
+    }
+    clearInputs();
+  } else if (e.target.id === "forms_btn-update") {
+    console.log(selected);
+    updateContact(selected.id);
+  } else if (e.target.id === "delete") {
+    console.log(selected);
+    setJSON("delete", selected.id);
+    editSpan.classList.add("hidden");
+    addBtn.classList.remove("hidden");
+    contactDetails.classList.add("hidden");
+    contactInstructions.classList.remove("hidden");
+    selected.classList.remove("selected");
+    clearInputs();
   }
-}
+});
+
+//===================LAUNCH APP========================
 
 async function renderNames() {
+  info.innerText = "or select existing contact from the list";
+  info.style.color = "white";
   contactList.innerText = ""; // clear contact list
   let contacts = await getJSON();
-  console.log(contacts);
   contacts.forEach((contact) => {
     let li = document.createElement("li");
     contactList.append(li);
     li.innerText = `${contact.name} ${contact.lastName}`;
     li.setAttribute("id", contact.id);
-    li.addEventListener("click", async function render() {
+    li.addEventListener("click", async function render(e) {
       await renderContact(contact.id, contact);
     });
   });
@@ -87,26 +76,27 @@ async function renderNames() {
 
 async function updateContact(id) {
   if (inputPhoto.value == "") {
-    inputpPhoto.value = "./assets/placeholder.jpg";
+    inputPhoto.value = "./assets/placeholder.jpg";
   }
   await setJSON(
     [inputName.value, inputLName.value, inputPhone.value, inputPhoto.value],
     id
   );
+  await renderNames();
 }
 
 async function renderContact(id, contact) {
   if (id && contact && id === contact.id) {
     let liCol = contactList.querySelectorAll("li");
     let currentLi = document.getElementById(id);
+    selected = currentLi;
     currentLi.classList.add("selected");
     liCol.forEach((li) => {
       if (li !== currentLi) {
         li.classList.remove("selected");
       }
     });
-    let update = document.getElementById("forms_btn-update");
-    update.remove();
+
     contactDetails.classList.remove("hidden");
     contactInstructions.classList.add("hidden");
     renderedName.innerText = contact.name;
@@ -114,8 +104,6 @@ async function renderContact(id, contact) {
     renderedPhone.innerText = contact.phone;
     renderedPhoto.innerHTML = `<img class = "contacts_photo" src="${contact.photo}">`;
     await editContact(id, contact);
-    launchListeners(id, "delete");
-    launchListeners(id, "new");
   } else {
     clearInputs();
   }
@@ -135,7 +123,6 @@ async function editContact(id, contact) {
   inputLName.value = contact.lastName;
   inputPhone.value = contact.phone;
   inputPhoto.value = contact.photo;
-  await launchListeners(id, "update");
 }
 
 async function setJSON(contact, id) {
@@ -144,6 +131,7 @@ async function setJSON(contact, id) {
       method: "DELETE",
     };
     await fetch(`${API}/${id}`, options);
+    renderNames();
   } else if (id === undefined) {
     [name, lastName, phone, photo] = contact;
     const contactObj = {
@@ -187,4 +175,4 @@ async function getJSON() {
   return result;
 }
 
-launchContactBook();
+renderNames();
