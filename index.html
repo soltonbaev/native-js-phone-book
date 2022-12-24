@@ -9,80 +9,90 @@
   </head>
   <body>
     <div class="contacts">
-      <div id="wrapper" class="contacts_wrapper box">
-        <div class="contacts_column">
-          <div id="forms" class="contacts_row box">
+      <div class="contacts__header"><h1>Native JS Contacts App</h1></div>
+      <div class="contacts__wrapper">
+        <div class="contacts__column contacts__details">
+          <div class="contacts__details-header">
+            <div class="contacts__details-close">X</div>
+          </div>
+          <div class="contacts__row contacts__forms">
             <input
               placeholder="Enter your name"
-              id="forms_name"
-              class="contacts_forms"
+              class="contacts__form-item contacts__input-name"
               type="text"
             />
             <input
               placeholder="Enter your last name"
-              id="forms_last-name"
-              class="contacts_forms"
+              class="contacts__form-item contacts__input-lname"
               type="text"
             />
             <input
               placeholder="Enter your phone number"
-              id="forms_phone"
-              class="contacts_forms"
+              class="contacts__form-item contacts__input-phone"
               type="number"
             />
             <input
               placeholder="Add photo URL"
-              id="forms_photo"
-              class="contacts_forms"
+              class="contacts__form-item contacts__input-photo"
               type="url"
             />
-            <button id="forms_btn-add" class="contacts_forms">
+            <button class="contacts__form-item contacts__btn-add">
               Add contact</button
-            ><span id="forms_edit-span" class="hidden">
-              <button id="forms_btn-update" class="contacts_forms">
+            ><span class="contacts__edit-buttons contacts__element_hidden">
+              <button
+                class="contacts__form-item contacts__form-button contacts__btn-update"
+              >
                 Update
               </button>
-              <button id="new" class="contacts_forms">New</button>
-              <button id="delete" class="contacts_forms">Delete</button>
-              <!-- <div>
-                <img id="cancel" alt="Cancel" src="./assets/cancel.svg" />
-                <img id="delete" src="./assets/delete.png" /></div -->
+              <button
+                class="contacts__form-item contacts__form-button contacts__btn-new"
+              >
+                New
+              </button>
+              <button
+                class="contacts__form-item contacts__form-button contacts__btn-delete"
+              >
+                Delete
+              </button>
             </span>
           </div>
-          <div id="contact-details" class="contacts_row hidden">
-            <ul id="contacts_rendered-ul">
+          <div
+            class="contacts__row contacts__element_hidden contacts__info-wrapper"
+          >
+            <ul class="contacts__info">
               <li>
                 <span
-                  id="contacts_rendered-name"
-                  class="contacts_data-container"
+                  class="contacts__data-container contacts__info-name"
                 ></span>
                 <span
-                  id="contacts_rendered-last-name"
-                  class="contacts_data-container"
+                  class="contacts__data-container contacts__info-lname"
                 ></span>
               </li>
-              <li></li>
               <li>
-                <span class="contacts_rendered-ul-span">Phone No: </span
+                <span class="contacts__info-phone-label">Phone No: </span
                 ><span
-                  id="contacts_rendered-phone"
-                  class="contacts_data-container"
+                  class="contacts__data-container contacts__info-phone"
                 ></span>
               </li>
-              <li id="contacts_rendered-photo">
+              <li class="contacts__info-photo-wrapper">
                 <div
-                  id="contacts_rendered-photo-wrapper"
-                  class="contacts_data-container"
+                  class="contacts__data-container contacts__info-photo"
                 ></div>
               </li>
             </ul>
           </div>
-          <div id="contact-instructions" class="contacts_row">
+          <div class="contacts__row contacts__help">
             <h3>Click to add new contact</h3>
-            <span id="info">or select existing contact from the list</span>
+            <span class="contacts__help-info"
+              >or select existing contact from the list</span
+            >
           </div>
         </div>
-        <ul id="names" class="contacts_column box"></ul>
+        <ul class="contacts__column contacts__list"></ul>
+      </div>
+      <div class="contacts__footer">
+        &copy; 2022 crafted by
+        <a href="https://soltonbaev.com">Ibraim Soltonbaev</a>
       </div>
     </div>
     <script src="./index.js"></script>

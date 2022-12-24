@@ -1,30 +1,35 @@
 // ====================DECLARE GLOBALS======================
 const API = "https://sltnbv-json-server.herokuapp.com/contacts";
 
-let inputName = document.getElementById("forms_name");
-let inputLName = document.getElementById("forms_last-name");
-let inputPhone = document.getElementById("forms_phone");
-let inputPhoto = document.getElementById("forms_photo");
-let addBtn = document.getElementById("forms_btn-add");
-let contactList = document.getElementById("names");
-let renderedName = document.getElementById("contacts_rendered-name");
-let renderedLName = document.getElementById("contacts_rendered-last-name");
-let renderedPhone = document.getElementById("contacts_rendered-phone");
-let renderedPhoto = document.getElementById("contacts_rendered-photo-wrapper");
-let editSpan = document.getElementById("forms_edit-span");
-let updateBtn = document.getElementById("forms_btn-update");
-let delBtn = document.getElementById("delete");
-let newContact = document.getElementById("new");
-let contactDetails = document.getElementById("contact-details");
-let contactInstructions = document.getElementById("contact-instructions");
-let forms = document.getElementById("forms");
-let list = document.getElementById("names");
-let info = document.getElementById("info");
+let inputName = document.getElementsByClassName("contacts__input-name")[0];
+let inputLName = document.getElementsByClassName("contacts__input-lname")[0];
+let inputPhone = document.getElementsByClassName("contacts__input-phone")[0];
+let inputPhoto = document.getElementsByClassName("contacts__input-photo")[0];
+let addBtn = document.getElementsByClassName("contacts__btn-add")[0];
+let contactList = document.getElementsByClassName("contacts__list")[0];
+let renderedName = document.getElementsByClassName("contacts__info-name")[0];
+let renderedLName = document.getElementsByClassName("contacts__info-lname")[0];
+let renderedPhone = document.getElementsByClassName("contacts__info-phone")[0];
+let renderedPhoto = document.getElementsByClassName("contacts__info-photo")[0];
+let editSpan = document.getElementsByClassName("contacts__edit-buttons")[0];
+let updateBtn = document.getElementsByClassName("contacts__btn-update")[0];
+let delBtn = document.getElementsByClassName("contacts__btn-delete")[0];
+let newContact = document.getElementsByClassName("contacts__btn-new")[0];
+let contactDetails = document.getElementsByClassName(
+  "contacts__info-wrapper"
+)[0];
+let contactInstructions = document.getElementsByClassName("contacts__help")[0];
+let forms = document.getElementsByClassName("contacts__forms")[0];
+let info = document.getElementsByClassName("contacts__help-info")[0];
+let details = document.getElementsByClassName("contacts__details")[0];
+let detailsClose = document.getElementsByClassName(
+  "contacts__details_close"
+)[0];
 let selected;
 //==================LAUNCH EVENT LISTENERS=====================
 
-forms.addEventListener("click", (e) => {
-  if (e.target.id == "forms_btn-add") {
+details.addEventListener("click", (e) => {
+  if (e.target.classList.contains("contacts__btn-add")) {
     if (inputName.value === "") {
       info.innerText = "Please, enter the first name at least";
       info.style.color = "red";
@@ -41,26 +46,30 @@ forms.addEventListener("click", (e) => {
       ]);
     }
     clearInputs();
-  } else if (e.target.id === "forms_btn-update") {
+  } else if (e.target.classList.contains("contacts__btn-update")) {
     console.log(selected);
     updateContact(selected.id);
-  } else if (e.target.id === "delete") {
+    details.classList.remove("contacts__details_mobile");
+  } else if (e.target.classList.contains("contacts__btn-delete")) {
     console.log(selected);
     setJSON("delete", selected.id);
     resetForms();
     clearInputs();
-  } else if (e.target.id === "new") {
+    details.classList.remove("contacts__details_mobile");
+  } else if (e.target.classList.contains("contacts__btn-new")) {
     clearInputs();
     resetForms();
+  } else if (e.target.classList.contains("contacts__details-close")) {
+    details.classList.remove("contacts__details_mobile");
   }
 });
 
 function resetForms() {
-  editSpan.classList.add("hidden");
-  addBtn.classList.remove("hidden");
-  contactDetails.classList.add("hidden");
-  contactInstructions.classList.remove("hidden");
-  selected.classList.remove("selected");
+  editSpan.classList.add("contacts__element_hidden");
+  addBtn.classList.remove("contacts__element_hidden");
+  contactDetails.classList.add("contacts__element_hidden");
+  contactInstructions.classList.remove("contacts__element_hidden");
+  selected.classList.remove("contacts__list-item_selected");
 }
 //===================LAUNCH APP========================
 
@@ -75,6 +84,7 @@ async function renderNames() {
     li.innerText = `${contact.name} ${contact.lastName}`;
     li.setAttribute("id", contact.id);
     li.addEventListener("click", async function render(e) {
+      details.classList.add("contacts__details_mobile");
       await renderContact(contact.id, contact);
     });
   });
@@ -96,19 +106,19 @@ async function renderContact(id, contact) {
     let liCol = contactList.querySelectorAll("li");
     let currentLi = document.getElementById(id);
     selected = currentLi;
-    currentLi.classList.add("selected");
+    currentLi.classList.add("contacts__list-item_selected");
     liCol.forEach((li) => {
       if (li !== currentLi) {
-        li.classList.remove("selected");
+        li.classList.remove("contacts__list-item_selected");
       }
     });
 
-    contactDetails.classList.remove("hidden");
-    contactInstructions.classList.add("hidden");
+    contactDetails.classList.remove("contacts__element_hidden");
+    contactInstructions.classList.add("contacts__element_hidden");
     renderedName.innerText = contact.name;
     renderedLName.innerText = contact.lastName;
     renderedPhone.innerText = contact.phone;
-    renderedPhoto.innerHTML = `<img class = "contacts_photo" src="${contact.photo}">`;
+    renderedPhoto.innerHTML = `<img class = "contacts__photo" src="${contact.photo}">`;
     await editContact(id, contact);
   } else {
     clearInputs();
@@ -123,8 +133,8 @@ function clearInputs() {
 }
 
 async function editContact(id, contact) {
-  addBtn.classList.add("hidden");
-  editSpan.classList.remove("hidden");
+  addBtn.classList.add("contacts__element_hidden");
+  editSpan.classList.remove("contacts__element_hidden");
   inputName.value = contact.name;
   inputLName.value = contact.lastName;
   inputPhone.value = contact.phone;
