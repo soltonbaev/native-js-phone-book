@@ -5,8 +5,12 @@ body {
   height: 100vh;
   position: relative;
   margin: 0;
+  background: url("./assets/background.jpeg");
 }
 
+h1 {
+  color: #8b6725;
+}
 .contacts__column {
   padding: 0 20px;
   width: 50%;
@@ -16,10 +20,12 @@ body {
   padding-top: 20px;
 }
 .contacts__column:last-child {
-  background-color: #3b3b3b;
+  background-color: #3b3b3b73;
+  border-radius: 10px;
 }
 .contacts__wrapper {
-  background-color: #201f1e;
+  background-color: #241f1be0;
+
   border-radius: 5px;
   width: 500px;
   margin: auto;
@@ -145,16 +151,24 @@ a {
   color: white;
 }
 /*===========================DESKTOP=========================*/
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .contacts {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
+
+  body {
+    background-size: cover;
+    backdrop-filter: brightness(0.3);
+  }
 }
 
 @media (max-width: 480px) {
+  body {
+    background-size: cover;
+  }
   h1 {
     font-size: 25px;
   }
